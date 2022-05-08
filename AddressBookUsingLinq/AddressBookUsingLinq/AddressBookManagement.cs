@@ -99,6 +99,26 @@ namespace AddressBookUsingLinq
             Console.WriteLine("No.of Records persent in dataTable is " + Record.Count());
 
         }
+        public void OrderedByFirstnameWithGivenCity()
+        {
+            Console.WriteLine("Enter City : ");
+            string city = Console.ReadLine();
+
+            var Records = from person in dataTable.AsEnumerable()
+                          where person.Field<string>("City").Equals(city)
+                          orderby person.Field<string>("FirstName")
+                          select person;
+            /* var Records = from record in dataTable.AsEnumerable()
+                           where record.Field<string>("City").Equals(city)
+                           orderby record.Field<string>("FirstName")
+                           select record;*/
+
+            foreach (var record in Records)
+            {
+                getAllData();
+            }
+
+        }
     }
 }
     
