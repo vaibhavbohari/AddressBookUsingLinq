@@ -30,7 +30,7 @@ namespace AddressBookUsingLinq
             dataTable.Rows.Add("Vinavak", "Kute", "GandhiRoad", "Hadapser", "mp", 489206, 7894567112, "vinavak@gmail.com");
         }
 
-        // Displays the table contents.
+       
         public void getAllData()
         {
             foreach (var data in dataTable.AsEnumerable())
@@ -59,8 +59,22 @@ namespace AddressBookUsingLinq
             Console.WriteLine("Contanted is Updated ");
             getAllData();
         }
+        public void DeletePersonByName()
+        {
+            Console.WriteLine("Enter Firstname: ");
+            string firstName = Console.ReadLine();
+            var data = dataTable.AsEnumerable().Where(x => x.Field<string>("FirstName") == firstName);
+
+            foreach (var rows in data.ToList())
+            {
+                rows.Delete();
+            }
+            getAllData();
+        }
     }
 }
+    
+
     
 
 
